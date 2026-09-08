@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdullahi Kidandan Musa | amrahaz.me</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -33,11 +34,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Smooth transitions for theme switching & UI cards */
-        body, header, section, div, card, footer, button, a {
+        body,
+        header,
+        section,
+        div,
+        card,
+        footer,
+        button,
+        a {
             transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
         }
 
@@ -55,23 +65,30 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #070c18;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #1e293b;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #10b981;
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+<body
+    class="bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-white min-h-screen flex flex-col justify-between">
 
     <!-- Toast Notification Box -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-slate-900 text-white border border-emerald-500/50 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+    <div id="toast"
+        class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div
+            class="bg-slate-900 text-white border border-emerald-500/50 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
             <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                 <i class="fa-solid fa-check text-sm"></i>
             </span>
@@ -86,18 +103,22 @@
     <div class="h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-600 w-full sticky top-0 z-50"></div>
 
     <!-- Navigation Header -->
-    <header class="bg-white/90 dark:bg-[#070c18]/90 backdrop-blur-md sticky top-1.5 z-40 border-b border-slate-200 dark:border-slate-800/80 shadow-sm">
+    <header
+        class="bg-white/90 dark:bg-[#070c18]/90 backdrop-blur-md sticky top-1.5 z-40 border-b border-slate-200 dark:border-slate-800/80 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <!-- Brand Logo -->
-            <a href="#" class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5 group">
-                <span class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-sm font-mono font-bold group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm">AM</span>
+            <a href="#"
+                class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5 group">
+                <span
+                    class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-sm font-mono font-bold group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm">AM</span>
                 <span class="font-bold tracking-tight">amrahaz<span class="text-emerald-500">.me</span></span>
             </a>
 
             <!-- Nav Links -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-400">
                 <a href="#about" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">About & Brand</a>
-                <a href="#projects" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">Projects Showcase</a>
+                <a href="#projects" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">Projects
+                    Showcase</a>
                 <a href="#skills" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">Tech Stack</a>
                 <a href="#contact" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">Contact</a>
             </nav>
@@ -105,12 +126,15 @@
             <!-- Actions: Light/Dark Toggle + Direct Email Button -->
             <div class="flex items-center gap-3">
                 <!-- Theme Toggle Button -->
-                <button id="themeToggle" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 hover:scale-105 active:scale-95 flex items-center gap-2 transition shadow-sm text-xs font-semibold" title="Toggle Theme">
+                <button id="themeToggle"
+                    class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 hover:scale-105 active:scale-95 flex items-center gap-2 transition shadow-sm text-xs font-semibold"
+                    title="Toggle Theme">
                     <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
                     <span id="themeLabel" class="hidden sm:inline font-mono">Dark</span>
                 </button>
 
-                <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md shadow-emerald-500/20 transition flex items-center gap-2">
+                <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md shadow-emerald-500/20 transition flex items-center gap-2">
                     <i class="fa-solid fa-envelope text-xs"></i> <span>Get in Touch</span>
                 </button>
             </div>
@@ -120,42 +144,59 @@
     <!-- Creative Hero Section (Side Rectangular Frame Layout) -->
     <section class="relative py-8 sm:py-12 lg:py-20 overflow-hidden bg-grid-pattern bg-tech-grid">
         <!-- Ambient Radial Glows -->
-        <div class="absolute top-1/4 left-10 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/15 blur-[120px] rounded-full pointer-events-none"></div>
-        <div class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div
+            class="absolute top-1/4 left-10 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/15 blur-[120px] rounded-full pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none">
+        </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                
+
                 <!-- Hero Left Column: Brief & Intro (7 cols on Desktop) -->
                 <div class="lg:col-span-7 flex flex-col items-start text-left">
-                    
+
                     <!-- Live Status Pill -->
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 text-xs font-mono text-emerald-600 dark:text-emerald-400 mb-6 shadow-sm">
+                    <div
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 text-xs font-mono text-emerald-600 dark:text-emerald-400 mb-6 shadow-sm">
                         <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
                         <span>Mechatronics Engineer • ABU Zaria '26</span>
                     </div>
 
                     <!-- Main Catchy Title -->
-                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15] mb-5 sm:mb-6">
-                        Architecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500">Intelligent Software</span> & Hardware Systems
+                    <h1
+                        class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15] mb-5 sm:mb-6">
+                        Architecting <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500">Intelligent
+                            Software</span> & Hardware Systems
                     </h1>
 
-                    <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-normal">
-                        Hi, I'm <strong class="text-slate-900 dark:text-white font-semibold">Abdullahi Kidandan Musa</strong>. I bridge the gap between high-performance web frontends, full-stack desktop architectures, and custom embedded microcontroller circuits.
+                    <p
+                        class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-normal">
+                        Hi, I'm <strong class="text-slate-900 dark:text-white font-semibold">Abdullahi Kidandan
+                            Musa</strong>. I bridge the gap between high-performance web frontends, full-stack desktop
+                        architectures, and custom embedded microcontroller circuits.
                     </p>
 
                     <!-- Interactive Quick Stats Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full max-w-lg mb-8 p-3 sm:p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md shadow-sm">
-                        <div class="border-b sm:border-b-0 sm:border-r border-slate-200 dark:border-slate-800 pb-3 sm:pb-0 sm:pr-2">
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full max-w-lg mb-8 p-3 sm:p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md shadow-sm">
+                        <div
+                            class="border-b sm:border-b-0 sm:border-r border-slate-200 dark:border-slate-800 pb-3 sm:pb-0 sm:pr-2">
                             <span class="block text-2xl font-extrabold font-mono text-emerald-500">100%</span>
-                            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Pixel-Perfect UI</span>
+                            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Pixel-Perfect
+                                UI</span>
                         </div>
-                        <div class="border-b sm:border-b-0 sm:border-r border-slate-200 dark:border-slate-800 pb-3 sm:pb-0 sm:pr-2">
+                        <div
+                            class="border-b sm:border-b-0 sm:border-r border-slate-200 dark:border-slate-800 pb-3 sm:pb-0 sm:pr-2">
                             <span class="block text-2xl font-extrabold font-mono text-teal-500">3+</span>
-                            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Core Disciplines</span>
+                            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Core
+                                Disciplines</span>
                         </div>
                         <div>
                             <span class="block text-2xl font-extrabold font-mono text-indigo-500">ABU</span>
@@ -165,10 +206,12 @@
 
                     <!-- Call To Action Buttons -->
                     <div class="flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                        <a href="#projects" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-500/25">
+                        <a href="#projects"
+                            class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-500/25">
                             <i class="fa-solid fa-code text-xs"></i> View Interactive Projects
                         </a>
-                        <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')" class="w-full sm:w-auto bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm font-semibold shadow-sm">
+                        <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')"
+                            class="w-full sm:w-auto bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm font-semibold shadow-sm">
                             <i class="fa-regular fa-copy text-xs text-emerald-500"></i> Copy Contact Email
                         </button>
                     </div>
@@ -177,46 +220,58 @@
 
                 <!-- Hero Right Column: Custom Rectangular Mechatronics Photo Frame (5 cols on Desktop) -->
                 <div class="lg:col-span-5 relative flex justify-center lg:justify-end">
-                    
+
                     <!-- Decorative Graphic Background Frames -->
-                    <div class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 opacity-30 blur-lg group-hover:opacity-100 transition duration-1000"></div>
+                    <div
+                        class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 opacity-30 blur-lg group-hover:opacity-100 transition duration-1000">
+                    </div>
 
                     <!-- Main Rectangular Frame -->
-                    <div class="relative w-full max-w-sm sm:max-w-md bg-slate-900 rounded-3xl p-2 sm:p-3 border-2 border-slate-200 dark:border-slate-800 tech-border-glow shadow-2xl overflow-hidden">
-                        
+                    <div
+                        class="relative w-full max-w-sm sm:max-w-md bg-slate-900 rounded-3xl p-2 sm:p-3 border-2 border-slate-200 dark:border-slate-800 tech-border-glow shadow-2xl overflow-hidden">
+
                         <!-- Rectangular Image Container (4:5 aspect ratio) -->
                         <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-slate-950">
                             <!-- High-Res Portrait Image Placeholder -->
-                            <img id="userAvatar" 
-                                 src="./assets/professional-picture.jpg"
-                                 alt="Abdullahi Kidandan Musa - Mechatronics Engineer & Full Stack Developer" 
-                                 class="w-full h-full object-cover brightness-125 contrast-110 transition-transform duration-700 hover:scale-105">
+                            <img id="userAvatar" src="./assets/professional-picture.jpg"
+                                alt="Abdullahi Kidandan Musa - Mechatronics Engineer & Full Stack Developer"
+                                class="w-full h-full object-cover brightness-125 contrast-110 transition-transform duration-700 hover:scale-105">
 
                             <!-- Sleek Cyber Overlay Overlay Screen Lines -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent pointer-events-none"></div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent pointer-events-none">
+                            </div>
 
                             <!-- Tech Crosshair Marks (Corner Accents) -->
-                            <div class="absolute top-3 left-3 text-[10px] font-mono text-emerald-400/80 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-emerald-500/30">
+                            <div
+                                class="absolute top-3 left-3 text-[10px] font-mono text-emerald-400/80 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-emerald-500/30">
                                 SYS.MECHATRONICS // 01
                             </div>
-                            <div class="absolute top-3 right-3 text-[10px] font-mono text-teal-400/80 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-teal-500/30">
+                            <div
+                                class="absolute top-3 right-3 text-[10px] font-mono text-teal-400/80 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-teal-500/30">
                                 ABU ZARIA
                             </div>
 
                             <!-- Bottom Floating Information Overlay Card -->
-                            <div class="absolute bottom-3 left-3 right-3 bg-slate-900/90 backdrop-blur-md p-4 rounded-xl border border-white/10 text-white shadow-xl">
+                            <div
+                                class="absolute bottom-3 left-3 right-3 bg-slate-900/90 backdrop-blur-md p-4 rounded-xl border border-white/10 text-white shadow-xl">
                                 <div class="flex items-center justify-between mb-1.5">
-                                    <span class="text-xs font-bold font-mono text-emerald-400 tracking-wide uppercase">Abdullahi Musa</span>
-                                    <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-mono rounded border border-emerald-500/40">AMRAHAZ</span>
+                                    <span
+                                        class="text-xs font-bold font-mono text-emerald-400 tracking-wide uppercase">Abdullahi
+                                        Musa</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-mono rounded border border-emerald-500/40">AMRAHAZ</span>
                                 </div>
                                 <p class="text-[11px] text-slate-300 font-sans leading-tight">
-                                    Specializing in Web Interfaces, C++ Microcontroller Embedded Systems & Intranet Applications.
+                                    Specializing in Web Interfaces, C++ Microcontroller Embedded Systems & Intranet
+                                    Applications.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Technical Spec Footer Bar inside Frame -->
-                        <div class="mt-3 px-3 py-2 bg-slate-950/80 rounded-xl border border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                        <div
+                            class="mt-3 px-3 py-2 bg-slate-950/80 rounded-xl border border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
                             <span class="flex items-center gap-1.5">
                                 <i class="fa-solid fa-microchip text-emerald-400"></i> Embedded C++
                             </span>
@@ -233,41 +288,57 @@
     </section>
 
     <!-- Brand Story & Origin Section (AMRAHAZ Breakdown) -->
-    <section id="about" class="py-16 border-y border-slate-200 dark:border-slate-800/80 bg-slate-100/60 dark:bg-slate-900/40 relative">
+    <section id="about"
+        class="py-16 border-y border-slate-200 dark:border-slate-800/80 bg-slate-100/60 dark:bg-slate-900/40 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="p-5 sm:p-8 lg:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/90 relative overflow-hidden shadow-sm dark:shadow-2xl">
-                
+            <div
+                class="p-5 sm:p-8 lg:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/90 relative overflow-hidden shadow-sm dark:shadow-2xl">
+
                 <div class="grid lg:grid-cols-12 gap-8 items-center">
-                    
+
                     <div class="lg:col-span-7">
                         <div class="flex items-center gap-2 mb-3">
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                            <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Identity & Philosophy</span>
+                            <span
+                                class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Identity
+                                & Philosophy</span>
                         </div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">The Story Behind <span class="text-emerald-500">amrahaz.me</span></h2>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            The Story Behind <span class="text-emerald-500">amrahaz.me</span></h2>
                         <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
-                            <strong class="text-slate-900 dark:text-white font-semibold">AMRAHAZ</strong> isn't just a domain name—it's an acronym honoring core roots and inspirational foundations. Built around personal devotion and engineering precision, each syllable represents a key pillar of motivation:
+                            <strong class="text-slate-900 dark:text-white font-semibold">AMRAHAZ</strong> isn't just a
+                            domain name—it's an acronym honoring core roots and inspirational foundations. Built around
+                            personal devotion and engineering precision, each syllable represents a key pillar of
+                            motivation:
                         </p>
                     </div>
 
                     <!-- Acronym Interactive Breakdown Grid -->
                     <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        
-                        <div class="p-3 sm:p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center hover:scale-105 transition">
-                            <span class="block font-mono text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">AM</span>
-                            <span class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Abdullahi</span>
+
+                        <div
+                            class="p-3 sm:p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center hover:scale-105 transition">
+                            <span
+                                class="block font-mono text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">AM</span>
+                            <span
+                                class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Abdullahi</span>
                             <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 block">Creator</span>
                         </div>
 
-                        <div class="p-3 sm:p-4 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-center hover:scale-105 transition">
-                            <span class="block font-mono text-2xl font-extrabold text-teal-600 dark:text-teal-400">RA</span>
+                        <div
+                            class="p-3 sm:p-4 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-center hover:scale-105 transition">
+                            <span
+                                class="block font-mono text-2xl font-extrabold text-teal-600 dark:text-teal-400">RA</span>
                             <span class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Mother</span>
                             <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 block">Inspiration</span>
                         </div>
 
-                        <div class="p-3 sm:p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-center hover:scale-105 transition">
-                            <span class="block font-mono text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">HAZ</span>
-                            <span class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Siblings</span>
+                        <div
+                            class="p-3 sm:p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-center hover:scale-105 transition">
+                            <span
+                                class="block font-mono text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">HAZ</span>
+                            <span
+                                class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Siblings</span>
                             <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 block">Family</span>
                         </div>
 
@@ -283,15 +354,20 @@
     <section id="skills" class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-widest">Engineering Competencies</span>
+                <span
+                    class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-widest">Engineering
+                    Competencies</span>
                 <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Tools & Skill Matrix</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">Comprehensive stack spanning modern web technologies, system scripting, and circuit design.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">Comprehensive stack spanning modern web
+                    technologies, system scripting, and circuit design.</p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Skill Card 1: Frontend -->
-                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition shadow-sm">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg mb-4">
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition shadow-sm">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg mb-4">
                         <i class="fa-solid fa-desktop"></i>
                     </div>
                     <h3 class="font-bold text-slate-900 dark:text-white mb-2">Frontend Dev</h3>
@@ -304,8 +380,10 @@
                 </div>
 
                 <!-- Skill Card 2: Systems & Backend -->
-                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-teal-500/50 transition shadow-sm">
-                    <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center text-lg mb-4">
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-teal-500/50 transition shadow-sm">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center text-lg mb-4">
                         <i class="fa-solid fa-server"></i>
                     </div>
                     <h3 class="font-bold text-slate-900 dark:text-white mb-2">System Development</h3>
@@ -318,8 +396,10 @@
                 </div>
 
                 <!-- Skill Card 3: Mechatronics & Hardware -->
-                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition shadow-sm">
-                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-lg mb-4">
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition shadow-sm">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-lg mb-4">
                         <i class="fa-solid fa-microchip"></i>
                     </div>
                     <h3 class="font-bold text-slate-900 dark:text-white mb-2">Mechatronics Engineering</h3>
@@ -332,8 +412,10 @@
                 </div>
 
                 <!-- Skill Card 4: Workflow & Version Control -->
-                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition shadow-sm">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg mb-4">
+                <div
+                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition shadow-sm">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg mb-4">
                         <i class="fa-solid fa-gear"></i>
                     </div>
                     <h3 class="font-bold text-slate-900 dark:text-white mb-2">Workflow & Deployment</h3>
@@ -349,25 +431,33 @@
     </section>
 
     <!-- Interactive Projects Showcase Section -->
-    <section id="projects" class="py-20 bg-slate-100/70 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800/80">
+    <section id="projects"
+        class="py-20 bg-slate-100/70 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
                 <div>
-                    <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-widest">Portfolio Showcase</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">Featured Projects & Systems</h2>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Explore interactive frontend applications, systems tools, and mechatronics builds.</p>
+                    <span
+                        class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-widest">Portfolio
+                        Showcase</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">Featured
+                        Projects & Systems</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Explore interactive frontend
+                        applications, systems tools, and mechatronics builds.</p>
                 </div>
 
                 <!-- Category Filter Buttons -->
                 <div class="mt-6 md:mt-0 flex flex-wrap gap-2 text-xs font-semibold">
-                    <button onclick="filterProjects('all')" id="btn-all" class="filter-btn active px-4 py-2 rounded-xl bg-emerald-500 text-white transition">
+                    <button onclick="filterProjects('all')" id="btn-all"
+                        class="filter-btn active px-4 py-2 rounded-xl bg-emerald-500 text-white transition">
                         All Projects
                     </button>
-                    <button onclick="filterProjects('frontend')" id="btn-frontend" class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition">
+                    <button onclick="filterProjects('frontend')" id="btn-frontend"
+                        class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition">
                         Frontend Web
                     </button>
-                    <button onclick="filterProjects('hardware')" id="btn-hardware" class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition">
+                    <button onclick="filterProjects('hardware')" id="btn-hardware"
+                        class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition">
                         Systems & Hardware
                     </button>
                 </div>
@@ -375,92 +465,126 @@
 
             <!-- Projects Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
+
                 <!-- Project 1: Product List with Cart (Frontend) -->
-                <div class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                <div
+                    class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/10b981?text=Product+List+%26+Cart+UI" 
-                                 alt="Product List with Cart Preview" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-emerald-400 border border-slate-700">
+                        <div
+                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                            <img src="https://placehold.co/600x350/0f172a/10b981?text=Product+List+%26+Cart+UI"
+                                alt="Product List with Cart Preview"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div
+                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-emerald-400 border border-slate-700">
                                 JavaScript • Cart State
                             </div>
                         </div>
 
                         <div class="p-6">
-                            <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20 font-mono">Frontend Mentor</span>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">Product List with Cart</h3>
+                            <span
+                                class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20 font-mono">Frontend
+                                Mentor</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
+                                Product List with Cart</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Dynamic e-commerce store featuring dynamic quantity increment counters, real-time item calculation, modal purchase confirmation, and JSON list parsing.
+                                Dynamic e-commerce store featuring dynamic quantity increment counters, real-time item
+                                calculation, modal purchase confirmation, and JSON list parsing.
                             </p>
                         </div>
                     </div>
 
-                    <div class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/product-list-with-cart-main" target="_blank" class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
+                    <div
+                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
+                        <a href="https://github.com/AbdullarhyTech360/product-list-with-cart-main" target="_blank"
+                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
                             <i class="fa-brands fa-github text-sm"></i> Code
                         </a>
-                        <a href="https://amrahaz.me/product-list-with-cart-main/" onclick="showToast('Frontend Demo', 'Opening product cart preview...')" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
+                        <a href="https://amrahaz.me/product-list-with-cart-main/"
+                            onclick="showToast('Frontend Demo', 'Opening product cart preview...')"
+                            class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
                             Live Demo <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Project 2: Multi-Step Form (Frontend) -->
-                <div class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                <div
+                    class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/6366f1?text=Multi-Step+Registration+Form" 
-                                 alt="Multi-Step Form Preview" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-indigo-400 border border-slate-700">
+                        <div
+                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                            <img src="https://placehold.co/600x350/0f172a/6366f1?text=Multi-Step+Registration+Form"
+                                alt="Multi-Step Form Preview"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div
+                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-indigo-400 border border-slate-700">
                                 Step Logic • Validation
                             </div>
                         </div>
 
                         <div class="p-6">
-                            <span class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md border border-indigo-500/20 font-mono">Advanced UI</span>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">Multi-Step Form</h3>
+                            <span
+                                class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md border border-indigo-500/20 font-mono">Advanced
+                                UI</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
+                                Multi-Step Form</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Subscription onboarding wizard with inline field error checking, state persistence across tabs, monthly/yearly billing toggle, and final price breakdown.
+                                Subscription onboarding wizard with inline field error checking, state persistence
+                                across tabs, monthly/yearly billing toggle, and final price breakdown.
                             </p>
                         </div>
                     </div>
 
-                    <div class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/multi-step-form" target="_blank" class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
+                    <div
+                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
+                        <a href="https://github.com/AbdullarhyTech360/multi-step-form" target="_blank"
+                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
                             <i class="fa-brands fa-github text-sm"></i> Code
                         </a>
-                        <a href="https://amrahaz.me/multi-step-form/" onclick="showToast('Form Demo', 'Opening multi-step form preview...')" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
+                        <a href="https://amrahaz.me/multi-step-form/"
+                            onclick="showToast('Form Demo', 'Opening multi-step form preview...')"
+                            class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
                             Live Demo <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Project 3: CBT Mini School System (Hardware / Systems) -->
-                <div class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                <div
+                    class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/14b8a6?text=CBT+Offline+School+Portal" 
-                                 alt="CBT School System" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-teal-400 border border-slate-700">
+                        <div
+                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                            <img src="https://placehold.co/600x350/0f172a/14b8a6?text=CBT+Offline+School+Portal"
+                                alt="CBT School System"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div
+                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-teal-400 border border-slate-700">
                                 Python • Intranet System
                             </div>
                         </div>
 
                         <div class="p-6">
-                            <span class="text-[11px] font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-md border border-teal-500/20 font-mono">Software System</span>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">CBT Mini School System</h3>
+                            <span
+                                class="text-[11px] font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-md border border-teal-500/20 font-mono">Software
+                                System</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
+                                CBT Mini School System</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Offline Computer-Based Testing application engineered for school local intranet deployments, featuring automated grading, student logs, and test timing controls.
+                                Offline Computer-Based Testing application engineered for school local intranet
+                                deployments, featuring automated grading, student logs, and test timing controls.
                             </p>
                         </div>
                     </div>
 
-                    <div class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/cbt-mini-school" target="_blank" class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
+                    <div
+                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
+                        <a href="https://github.com/AbdullarhyTech360/cbt-mini-school" target="_blank"
+                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
                             <i class="fa-brands fa-github text-sm"></i> Code
                         </a>
                         <span class="text-slate-400 font-mono text-[11px]">Desktop Intranet</span>
@@ -468,28 +592,37 @@
                 </div>
 
                 <!-- Project 4: Tinkercad Microcontroller Circuits (Hardware) -->
-                <div class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                <div
+                    class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/f59e0b?text=Arduino+Microcontroller+Circuits" 
-                                 alt="Arduino Microcontroller Circuits" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-amber-400 border border-slate-700">
+                        <div
+                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                            <img src="https://placehold.co/600x350/0f172a/f59e0b?text=Arduino+Microcontroller+Circuits"
+                                alt="Arduino Microcontroller Circuits"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div
+                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-amber-400 border border-slate-700">
                                 Arduino C++ • Sensors
                             </div>
                         </div>
 
                         <div class="p-6">
-                            <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 font-mono">Mechatronics</span>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">Tinkercad Circuits & Sensors</h3>
+                            <span
+                                class="text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 font-mono">Mechatronics</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
+                                Tinkercad Circuits & Sensors</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Microcontroller circuit schematics, ADC analog sensor conversion scripts, motor driver automation, and hardware interrupt handling routines.
+                                Microcontroller circuit schematics, ADC analog sensor conversion scripts, motor driver
+                                automation, and hardware interrupt handling routines.
                             </p>
                         </div>
                     </div>
 
-                    <div class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com" target="_blank" class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
+                    <div
+                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
+                        <a href="https://github.com" target="_blank"
+                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
                             <i class="fa-brands fa-github text-sm"></i> Schematics
                         </a>
                         <span class="text-slate-400 font-mono text-[11px]">Embedded C++</span>
@@ -497,28 +630,38 @@
                 </div>
 
                 <!-- Project 5: Store Management System (Hardware / Systems) -->
-                <div class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                <div
+                    class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/3b82f6?text=Store+POS+%26+Inventory+System" 
-                                 alt="Store Management POS" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-blue-400 border border-slate-700">
+                        <div
+                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                            <img src="https://placehold.co/600x350/0f172a/3b82f6?text=Store+POS+%26+Inventory+System"
+                                alt="Store Management POS"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div
+                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-blue-400 border border-slate-700">
                                 Full-Stack • POS
                             </div>
                         </div>
 
                         <div class="p-6">
-                            <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-md border border-blue-500/20 font-mono">In Progress</span>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">Store Management System</h3>
+                            <span
+                                class="text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-md border border-blue-500/20 font-mono">In
+                                Progress</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
+                                Store Management System</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Point of Sale (POS) & inventory database system supporting barcode scanning logic, real-time stock deductions, and receipt generation.
+                                Point of Sale (POS) & inventory database system supporting barcode scanning logic,
+                                real-time stock deductions, and receipt generation.
                             </p>
                         </div>
                     </div>
 
-                    <div class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com" target="_blank" class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
+                    <div
+                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
+                        <a href="https://github.com" target="_blank"
+                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
                             <i class="fa-brands fa-github text-sm"></i> Code
                         </a>
                         <span class="text-slate-400 font-mono text-[11px]">Full-Stack App</span>
@@ -526,31 +669,43 @@
                 </div>
 
                 <!-- Project 6: IP Address Tracker (Frontend) -->
-                <div class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                <div
+                    class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/ec4899?text=IP+Tracker+%26+Interactive+Map" 
-                                 alt="IP Tracker" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-pink-400 border border-slate-700">
+                        <div
+                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                            <img src="https://placehold.co/600x350/0f172a/ec4899?text=IP+Tracker+%26+Interactive+Map"
+                                alt="IP Tracker"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div
+                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-pink-400 border border-slate-700">
                                 IP Geolocation • Maps
                             </div>
                         </div>
 
                         <div class="p-6">
-                            <span class="text-[11px] font-bold text-pink-600 dark:text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-md border border-pink-500/20 font-mono">API Integration</span>
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">IP Address Tracker</h3>
+                            <span
+                                class="text-[11px] font-bold text-pink-600 dark:text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-md border border-pink-500/20 font-mono">API
+                                Integration</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
+                                IP Address Tracker</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Real-time IP address lookups using geolocation REST APIs and dynamic interactive map tile rendering with custom pin markers.
+                                Real-time IP address lookups using geolocation REST APIs and dynamic interactive map
+                                tile rendering with custom pin markers.
                             </p>
                         </div>
                     </div>
 
-                    <div class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/ip-address-tracker-master" target="_blank" class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
+                    <div
+                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
+                        <a href="https://github.com/AbdullarhyTech360/ip-address-tracker-master" target="_blank"
+                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
                             <i class="fa-brands fa-github text-sm"></i> Code
                         </a>
-                        <a href="http://amrahaz.me/ip-address-tracker-master/" onclick="showToast('IP Tracker', 'Opening map tracker preview...')" class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
+                        <a href="http://amrahaz.me/ip-address-tracker-master/"
+                            onclick="showToast('IP Tracker', 'Opening map tracker preview...')"
+                            class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
                             Live Demo <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
@@ -561,30 +716,37 @@
     </section>
 
     <!-- Footer Section -->
-    <footer id="contact" class="py-16 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#050811] text-center relative overflow-hidden">
+    <footer id="contact"
+        class="py-16 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#050811] text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
-            <span class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 inline-flex items-center justify-center text-xl mb-4">
+
+            <span
+                class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 inline-flex items-center justify-center text-xl mb-4">
                 <i class="fa-solid fa-paper-plane"></i>
             </span>
 
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Let's Build Something Impactful</h3>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Let's Build Something
+                Impactful</h3>
             <p class="text-slate-600 dark:text-slate-400 text-sm mb-8 max-w-lg mx-auto">
                 Open for software contracts, embedded system engineering, and collaborative projects.
             </p>
-            
+
             <div class="flex flex-wrap justify-center items-center gap-4 mb-10">
-                <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+                <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')"
+                    class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
                     <i class="fa-solid fa-envelope"></i> amkidandan@engineering.abu.edu.ng
                 </button>
-                <a href="https://github.com/AbdullarhyTech360" target="_blank" class="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition text-xs sm:text-sm font-semibold flex items-center gap-2">
+                <a href="https://github.com/AbdullarhyTech360" target="_blank"
+                    class="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition text-xs sm:text-sm font-semibold flex items-center gap-2">
                     <i class="fa-brands fa-github text-base"></i> GitHub
                 </a>
             </div>
 
-            <div class="pt-8 border-t border-slate-200 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-500 font-mono gap-4">
+            <div
+                class="pt-8 border-t border-slate-200 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-500 font-mono gap-4">
                 <p>© 2026 Abdullahi Kidandan Musa • All Rights Reserved</p>
-                <p>Hosted on Custom Domain: <span class="text-emerald-600 dark:text-emerald-400 font-semibold">amrahaz.me</span></p>
+                <p>Hosted on Custom Domain: <span
+                        class="text-emerald-600 dark:text-emerald-400 font-semibold">amrahaz.me</span></p>
             </div>
         </div>
     </footer>
@@ -600,11 +762,11 @@
             if (theme === 'light') {
                 htmlElement.classList.remove('dark');
                 themeIcon.className = 'fa-solid fa-sun text-amber-500 text-sm';
-                if(themeLabel) themeLabel.innerText = 'Light';
+                if (themeLabel) themeLabel.innerText = 'Light';
             } else {
                 htmlElement.classList.add('dark');
                 themeIcon.className = 'fa-solid fa-moon text-amber-300 text-sm';
-                if(themeLabel) themeLabel.innerText = 'Dark';
+                if (themeLabel) themeLabel.innerText = 'Dark';
             }
         }
 
@@ -668,5 +830,19 @@
             });
         }
     </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6a9fa68908f5a2345548d44f/1k1vq52up';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
+
 </html>
