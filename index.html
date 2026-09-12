@@ -1,834 +1,1597 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdullahi Kidandan Musa | amrahaz.me</title>
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        emeraldAccent: '#10b981',
-                        brandDark: '#070c18',
-                        brandCardDark: '#0f172a',
-                    },
-                    backgroundImage: {
-                        'grid-pattern': "radial-gradient(circle, rgba(16, 185, 129, 0.08) 1px, transparent 1px)",
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- FontAwesome, Google Fonts & JetBrains Mono -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Abdullahi Musa Kidandan | amrahaz.me</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke-width='5' stroke-linecap='round'%3E%3Ccircle cx='24' cy='15.5' r='13' stroke='%23ff7e5f'/%3E%3Ccircle cx='16.6' cy='19.8' r='13' stroke='%23feb47b'/%3E%3Ccircle cx='31.4' cy='19.8' r='13' stroke='%23fb7185'/%3E%3C/g%3E%3Ccircle cx='24' cy='24' r='3.8' fill='%23ff7e5f'/%3E%3C/svg%3E">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Smooth transitions for theme switching & UI cards */
-        body,
-        header,
-        section,
-        div,
-        card,
-        footer,
-        button,
-        a {
-            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+        /* CSS Variables & Theming */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #fff;
+            --accent-gradient: linear-gradient(90deg, #ff7e5f, #feb47b, #ff7e5f);
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --inset-shadow: inset 0 6px 12px rgba(0,0,0,0.15);
+            --border-color: #ddd;
+            --label-color: #888;
+            --orange-accent: #ff7e5f;
+            
+            /* Increased Transparency for Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.10); 
+            --glass-border: rgba(255, 255, 255, 0.20);
         }
 
-        /* Tech Background Pattern */
-        .bg-tech-grid {
-            background-size: 24px 24px;
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f1f1f1;
+            --card-bg: #1e1e1e;
+            --shadow: 0 4px 6px rgba(0,0,0,0.5);
+            --inset-shadow: inset 0 6px 12px rgba(0,0,0,0.8);
+            --border-color: #444;
+            --label-color: #aaa;
+            
+            /* Dark Mode Increased Transparency */
+            --glass-bg: rgba(18, 18, 18, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.05);
         }
 
-        /* Glowing Border Frame */
-        .tech-border-glow {
-            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
+        /* General Reset & Smooth Scrolling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
+        /* Headings & brand wordmark use the display font, matching files/ design */
+        h1, h2, h3, .logo {
+            font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* THE FIX: Text Selection Highlight */
+        ::selection {
+            background-color: var(--orange-accent);
+            color: #ffffff;
+        }
+        ::-moz-selection {
+            background-color: var(--orange-accent);
+            color: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation (High Transparency Glassmorphism) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Hamburger Menu (mobile) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 26px;
+            height: 3px;
+            border-radius: 3px;
+            background: var(--text-color);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        body.mobile-nav-open .hamburger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        body.mobile-nav-open .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        body.mobile-nav-open .hamburger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+
+        .logo-knot {
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .logo:hover .logo-knot {
+            transform: rotate(90deg);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+            cursor: pointer;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        /* Dropdowns */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            min-width: 150px;
+            z-index: 10;
+            border: 1px solid var(--border-color);
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: var(--bg-color);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            width: 100%;
+        }
+
+        .arrow-down {
+            cursor: pointer;
+        }
+
+        .arrow-down::after {
+            content: '▾';
+            display: inline-block;
+            font-size: 1.1rem;
+            line-height: 1;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-trigger.open .arrow-down::after {
+            transform: rotate(180deg);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--text-color);
+        }
+
+        .theme-switch-track {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            border-radius: 999px;
+            background: var(--border-color);
+            border: 1px solid var(--border-color);
+            display: block;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .theme-switch-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        body.dark-mode .theme-switch-track {
+            background: var(--orange-accent);
+            border-color: var(--orange-accent);
+        }
+
+        body.dark-mode .theme-switch-thumb {
+            transform: translateX(20px);
+        }
+
+        body.dark-mode .theme-label {
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 10%;
+            min-height: 80vh;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-keywords {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            color: var(--label-color);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 0.3rem 0.85rem;
+            margin-bottom: 1.25rem;
+            background-color: var(--card-bg);
+        }
+
+        .hero-status .status-dot {
             width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--orange-accent);
+            box-shadow: 0 0 0 0 rgba(255, 126, 95, 0.6);
+            animation: status-pulse 2s infinite;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #070c18;
+        @keyframes status-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 126, 95, 0.6); }
+            70% { box-shadow: 0 0 0 8px rgba(255, 126, 95, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 126, 95, 0); }
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
+        .avatar-ring {
+            width: min(310px, 78vw);
+            height: min(310px, 78vw);
+            border-radius: 50%;
+            padding: 5px;
+            background: var(--accent-gradient);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .avatar-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            background-color: var(--card-bg);
+        }
+
+        /* About Section */
+        #about {
+            padding: 4rem 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .about-card h2 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .origin-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .origin-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .origin-list li:last-child {
+            border-bottom: none;
+        }
+
+        .origin-list strong {
+            color: var(--orange-accent);
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            margin-right: 0.25rem;
+        }
+
+        /* Trapezium Heading Accent (flash animated light) */
+        #about .about-card h2,
+        #projects h2,
+        #stack h2,
+        #contact-connect h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.6rem;
+        }
+
+        #about .about-card h2::after,
+        #projects h2::after,
+        #stack h2::after,
+        #contact-connect h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -14px;
+            width: 100%;
+            height: 9px;
+            background-image:
+                linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(255, 255, 255, 0) 100%),
+                linear-gradient(90deg, var(--orange-accent), var(--orange-accent));
+            background-size: 55% 100%, 100% 100%;
+            background-repeat: no-repeat, no-repeat;
+            background-position: -120% 0, 0 0;
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+            animation: trapezium-flash 4s ease-in-out infinite;
+        }
+
+        @keyframes trapezium-flash {
+            0%,
+            50% {
+                background-position: -120% 0, 0 0;
+            }
+            65%,
+            100% {
+                background-position: 220% 0, 0 0;
+            }
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 4rem 10%;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px 0 12px 12px; /* Rounded except top right */
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        /* Project Preview Image Styling */
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px 0 8px 8px; /* Matches inner curve of card */
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .lightbox-trigger {
+            cursor: zoom-in;
+        }
+
+        .lightbox-trigger:hover {
+            opacity: 0.9;
+        }
+
+        /* Lightbox Overlay */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox-overlay.show {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 3px solid var(--orange-accent);
+        }
+
+        .lightbox-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 95vw;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 126, 95, 0.9);
+            border: none;
+            color: #fff;
+            font-size: 1.4rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            z-index: 2;
+        }
+
+        .lightbox-prev {
+            left: 1.25rem;
+        }
+
+        .lightbox-next {
+            right: 1.25rem;
+        }
+
+        .lightbox-nav:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: var(--orange-accent);
+        }
+
+        .lightbox-caption {
+            color: #fff;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 0.95rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 126, 95, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: var(--orange-accent);
+            border: none;
+            color: #fff;
+            font-size: 1.6rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 1;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animated Gradient Border */
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, #ff7e5f, #feb47b, transparent);
+            animation: rotate 4s linear infinite;
+            z-index: -2;
+        }
+
+        .project-card::after {
+            content: "";
+            position: absolute;
+            inset: 2px; /* Thickness of border */
+            background: var(--card-bg);
+            border-radius: 10px 0 10px 10px;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-code {
+            background: transparent;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+        }
+
+        .btn-view {
+            background: var(--accent-gradient);
+            color: #fff;
+        }
+
+        .btn-disabled {
+            background: var(--border-color);
+            color: var(--text-color);
+            cursor: default;
+            font-weight: 600;
+        }
+
+        /* More Projects Button */
+        .more-projects-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 3rem;
+        }
+
+        .btn-more {
+            background: var(--card-bg);
+            border: 2px solid var(--orange-accent);
+            color: var(--text-color);
+            text-decoration: underline;
+            border-radius: 12px 0 12px 12px;
+            padding: 0.8rem 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-more:hover {
+            background: var(--orange-accent);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Stack and Skill Matrix */
+        #stack {
+            padding: 4rem 10%;
+        }
+
+        .section-subtitle {
+            color: var(--label-color);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-desc {
+            color: var(--label-color);
+            font-size: 0.95rem;
+        }
+
+        .skill-details {
+            display: none;
+            margin-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .skill-details ul {
+            list-style: none;
+            padding: 0;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .skill-details li {
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed var(--border-color);
+            color: var(--label-color);
+        }
+
+        .skill-details li:last-child {
+            border-bottom: none;
+        }
+
+        /* Expanded State with Sinking Effect (NO Orange Background) */
+        .skill-card.expanded {
+            transform: translateY(4px) scale(0.98);
+            box-shadow: var(--inset-shadow);
+            background-color: var(--card-bg); /* Kept original background */
+            color: var(--text-color); /* Kept original text color */
+            border-color: var(--orange-accent); /* Orange border to indicate active state */
+        }
+
+        .skill-card.expanded .skill-details {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Contact & Connect Section */
+        #contact-connect {
+            padding: 4rem 10%;
+            display: flex;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-column, .connect-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--label-color);
+            margin-bottom: 0.3rem;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+        }
+
+        .contact-link {
+            color: var(--text-color);
+            text-decoration: underline;
+            text-decoration-color: var(--border-color);
+            text-underline-offset: 4px;
+            transition: text-decoration-color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .contact-link:hover {
+            text-decoration-color: var(--text-color);
+        }
+
+        /* Social Grid */
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            max-width: 500px;
+        }
+
+        .social-box {
+            aspect-ratio: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--label-color);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            background: var(--card-bg);
+        }
+
+        .social-box:hover:not(.empty) {
+            border-color: var(--orange-accent);
+            color: var(--orange-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .social-box.empty:hover {
+            border-color: var(--orange-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .social-box svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        footer {
+            padding: 1.75rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: var(--label-color);
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+        }
+
+        footer .footer-highlight {
+            color: var(--orange-accent);
+            font-weight: 600;
+        }
+
+        footer .footer-brand {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        /* Welcome Modal */
+        #welcome-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 1.8rem 1.65rem 1.7rem;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 304px;
+            width: calc(100% - 2rem);
+            box-shadow: var(--shadow);
+        }
+
+        .modal-content .modal-mark {
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .modal-content h2 {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .modal-content p {
+            margin: 0.6rem 0 1rem;
+            font-size: 0.72rem;
+            line-height: 1.5;
+            color: var(--label-color);
+        }
+
+        .modal-content input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.7rem 0.75rem;
+            margin: 0 0 0.55rem;
+            border: 2px solid var(--orange-accent);
+            border-radius: 9px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 0.8rem;
+        }
+
+        .modal-content input:focus {
+            outline: none;
+            border-color: var(--orange-accent);
+            box-shadow: 0 0 0 3px rgba(255, 126, 95, 0.35);
+        }
+
+        .modal-content .btn {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            font-size: 0.72rem;
+        }
+
+        .modal-content .skip-link {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.68rem;
+            color: var(--label-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .modal-content .skip-link:hover {
+            color: var(--orange-accent);
+            border-bottom-color: var(--orange-accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            #hero { flex-direction: column-reverse; text-align: center; }
+            .hero-text { padding-right: 0; margin-top: 2rem; }
+            #about { grid-template-columns: 1fr; }
+            .contact-connect-wrapper { flex-direction: column; }
+            .connect-grid { grid-template-columns: repeat(6, 1fr); }
+            .social-box.empty { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+            header { flex-wrap: wrap; }
+            .hamburger { display: flex; }
+            body.mobile-nav-open nav { flex-basis: 100%; display: flex; align-items: flex-start; }
+            body.mobile-nav-open nav ul {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+                padding-bottom: 0.5rem;
+            }
+            body.mobile-nav-open nav > ul > li {
+                border-bottom: 1px solid var(--glass-border);
+            }
+            body.mobile-nav-open nav > ul > li:last-child {
+                border-bottom: none;
+            }
+            body.mobile-nav-open nav ul li a {
+                display: block;
+                padding: 0.9rem 0;
+                font-size: 1rem;
+                width: 100%;
+            }
+            body.mobile-nav-open nav ul li.theme-toggle .theme-switch {
+                padding: 0.9rem 0;
+            }
+            body.mobile-nav-open .dropdown-menu {
+                display: none;
+                position: static;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                border-top: 1px dashed var(--border-color);
+                padding: 0 0 0.5rem 1.25rem;
+            }
+            body.mobile-nav-open .dropdown-menu.show {
+                display: block;
+            }
         }
     </style>
 </head>
+<body>
 
-<body
-    class="bg-slate-50 dark:bg-[#070c18] text-slate-800 dark:text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-white min-h-screen flex flex-col justify-between">
-
-    <!-- Toast Notification Box -->
-    <div id="toast"
-        class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div
-            class="bg-slate-900 text-white border border-emerald-500/50 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
-            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                <i class="fa-solid fa-check text-sm"></i>
-            </span>
-            <div>
-                <p id="toastTitle" class="text-xs font-bold font-mono">Notification</p>
-                <p id="toastMessage" class="text-xs text-slate-300">Action performed successfully.</p>
-            </div>
+    <!-- Welcome Prompt Modal -->
+    <div id="welcome-modal">
+        <div class="modal-content">
+            <span class="modal-mark" aria-hidden="true">AM</span>
+            <h2>Before you look around —<br>what should I call you?</h2>
+            <p>Just so I can say hello properly.</p>
+            <input type="text" id="visitor-name" placeholder="Your name" aria-label="Your name" />
+            <button class="btn btn-view" onclick="submitName()">Continue</button>
+            <a href="#" class="skip-link" onclick="skipName(event)">Skip for now</a>
         </div>
     </div>
 
-    <!-- Top Accent Gradient Bar -->
-    <div class="h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-600 w-full sticky top-0 z-50"></div>
-
-    <!-- Navigation Header -->
-    <header
-        class="bg-white/90 dark:bg-[#070c18]/90 backdrop-blur-md sticky top-1.5 z-40 border-b border-slate-200 dark:border-slate-800/80 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#"
-                class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5 group">
-                <span
-                    class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-sm font-mono font-bold group-hover:bg-emerald-500 group-hover:text-white transition-all shadow-sm">AM</span>
-                <span class="font-bold tracking-tight">amrahaz<span class="text-emerald-500">.me</span></span>
-            </a>
-
-            <!-- Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-400">
-                <a href="#about" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">About & Brand</a>
-                <a href="#projects" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">Projects
-                    Showcase</a>
-                <a href="#skills" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">Tech Stack</a>
-                <a href="#contact" class="hover:text-emerald-500 dark:hover:text-emerald-400 transition">Contact</a>
-            </nav>
-
-            <!-- Actions: Light/Dark Toggle + Direct Email Button -->
-            <div class="flex items-center gap-3">
-                <!-- Theme Toggle Button -->
-                <button id="themeToggle"
-                    class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 hover:scale-105 active:scale-95 flex items-center gap-2 transition shadow-sm text-xs font-semibold"
-                    title="Toggle Theme">
-                    <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
-                    <span id="themeLabel" class="hidden sm:inline font-mono">Dark</span>
-                </button>
-
-                <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')"
-                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-md shadow-emerald-500/20 transition flex items-center gap-2">
-                    <i class="fa-solid fa-envelope text-xs"></i> <span>Get in Touch</span>
-                </button>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="logo" title="AMRAHAZ - the Triad Knot: Abdullahi, Mother, Siblings">
+            <svg class="logo-knot" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                <g fill="none" stroke-width="5" stroke-linecap="round">
+                    <circle cx="24" cy="15.5" r="13" stroke="#ff7e5f"></circle>
+                    <circle cx="16.6" cy="19.8" r="13" stroke="#feb47b"></circle>
+                    <circle cx="31.4" cy="19.8" r="13" stroke="#fb7185"></circle>
+                </g>
+                <circle cx="24" cy="24" r="3.8" fill="#ff7e5f"></circle>
+            </svg>
+            <span>amrahaz</span>
         </div>
+        <nav>
+            <ul>
+                <li class="dropdown-trigger">
+                    <a href="#about" class="arrow-down" aria-expanded="false">About</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#bio">Bio</a></li>
+                        <li><a href="#origin">Origin of amrahaz</a></li>
+                    </ul>
+                </li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#stack">Stack & Skills</a></li>
+                <li class="dropdown-trigger">
+                    <a href="#" class="arrow-down" aria-expanded="false">Contact</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#contact-connect">Contact Info</a></li>
+                        <li><a href="#contact-connect">Connect with me</a></li>
+                    </ul>
+                </li>
+                <li class="theme-toggle">
+                    <button id="themeToggle" class="theme-switch" role="switch" aria-checked="false" onclick="toggleDarkMode(event)" title="Toggle theme">
+                        <span class="theme-switch-track"><span class="theme-switch-thumb"></span></span>
+                        <span id="themeLabel" class="theme-label">Light</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <button id="hamburger" class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
     </header>
 
-    <!-- Creative Hero Section (Side Rectangular Frame Layout) -->
-    <section class="relative py-8 sm:py-12 lg:py-20 overflow-hidden bg-grid-pattern bg-tech-grid">
-        <!-- Ambient Radial Glows -->
-        <div
-            class="absolute top-1/4 left-10 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/15 blur-[120px] rounded-full pointer-events-none">
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-text">
+                <p class="hero-status"><span class="status-dot"></span> 400L Mechatronics Student • ABU Zaria '27</p>
+                <h1>I am <span class="gradient-keywords">Abdullahi Musa Kidandan</span></h1>
+                <p>Welcome to my digital space. I am a <span class="gradient-keywords">Fullstack Developer</span>, <span class="gradient-keywords">Mechatronics Student</span>, and <span class="gradient-keywords">System Designer</span>.</p>
+                <p style="margin-top: 1rem;">I bridge the gap between high-performance web frontends, full stack applications, and custom embedded microcontroller circuits.</p>
+            </div>
+            <div class="hero-image">
+                <div class="avatar-ring">
+                    <img src="./assets/professional-picture.jpg" alt="Abdullahi Musa Kidandan - Mechatronics Student & Full Stack Developer" id="profile-pic">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="about-card" id="bio">
+                <h2>Biography</h2>
+                <p>I am a Mechatronics Engineering student at Ahmadu Bello University, Zaria (ABU '27), and a full-stack developer. My work spans high-performance web frontends, full stack applications, and custom embedded microcontroller circuits — building robust solutions and bridging the gap between hardware and software.</p>
+            </div>
+            <div class="about-card" id="origin">
+                <h2>Origin of amrahaz</h2>
+                <p><strong>AMRAHAZ</strong> isn't just a domain name — it's an acronym honoring my roots and inspirational foundations. Built around personal devotion and engineering precision, each syllable represents a key pillar of motivation:</p>
+                <ul class="origin-list">
+                    <li><strong>AM</strong> — Abdullahi, the Creator</li>
+                    <li><strong>RA</strong> — Mother, the Inspiration</li>
+                    <li><strong>HAZ</strong> — Siblings, the Family</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="./assets/product-list-with-cart.png" alt="Product List with Cart Preview" class="lightbox-trigger" onclick="openLightbox(this)" title="Click to zoom">
+                    <h3>Product List with Cart</h3>
+                    <p>Dynamic e-commerce store with live quantity counters, real-time item calculation, modal purchase confirmation, and JSON list parsing.</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com/AbdullarhyTech360/product-list-with-cart-main" target="_blank" class="btn btn-code">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Code
+                        </a>
+                        <a href="https://amrahaz.me/product-list-with-cart-main/" target="_blank" class="btn btn-view">View</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="./assets/multi-step-registration-form.png" alt="Multi-Step Form Preview" class="lightbox-trigger" onclick="openLightbox(this)" title="Click to zoom">
+                    <h3>Multi-Step Form</h3>
+                    <p>Subscription onboarding wizard with inline field error checking, state persistence across tabs, monthly/yearly billing toggle, and final price breakdown.</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com/AbdullarhyTech360/multi-step-form" target="_blank" class="btn btn-code">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Code
+                        </a>
+                        <a href="https://amrahaz.me/multi-step-form/" target="_blank" class="btn btn-view">View</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="./assets/cbt-mini.png" alt="CBT School System" class="lightbox-trigger" onclick="openLightbox(this)" title="Click to zoom">
+                    <h3>CBT Mini School System</h3>
+                    <p>Offline Computer-Based Testing application engineered for school local intranet deployments, featuring automated grading, student logs, and test timing controls.</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com/AbdullarhyTech360/cbt-mini-school" target="_blank" class="btn btn-code">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Code
+                        </a>
+                        <span class="btn btn-disabled">Desktop Intranet</span>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <img src="./assets/mood-indicator.png" alt="Tinkercad Microcontroller Circuits" class="lightbox-trigger" onclick="openLightbox(this)" title="Click to zoom">
+                    <h3>Tinkercad Circuits & Sensors</h3>
+                    <p>APB05 Mood Indicator — a servo motor Arduino project: microcontroller circuit schematics, ADC analog sensor conversion scripts, motor driver automation, and hardware interrupt handling routines.</p>
+                    <div class="project-buttons">
+                        <a href="https://www.tinkercad.com/things/0FEqBweKU6W-apb05-mood-indicator-the-servo-motor" target="_blank" class="btn btn-code">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Tinkercad
+                        </a>
+                        <span class="btn btn-disabled">Embedded C++</span>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <img src="./assets/store-management-system.png" alt="Store Management POS" class="lightbox-trigger" onclick="openLightbox(this)" title="Click to zoom">
+                    <h3>Store Management System</h3>
+                    <p>Point of Sale (POS) & inventory database system supporting barcode scanning logic, real-time stock deductions, and receipt generation.</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com" target="_blank" class="btn btn-code">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Code
+                        </a>
+                        <span class="btn btn-disabled">In Progress</span>
+                    </div>
+                </div>
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <img src="./assets/ip-address-tracker.png" alt="IP Tracker" class="lightbox-trigger" onclick="openLightbox(this)" title="Click to zoom">
+                    <h3>IP Address Tracker</h3>
+                    <p>Real-time IP address lookups using geolocation REST APIs and dynamic interactive map tile rendering with custom pin markers.</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com/AbdullarhyTech360/ip-address-tracker-master" target="_blank" class="btn btn-code">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Code
+                        </a>
+                        <a href="http://amrahaz.me/ip-address-tracker-master/" target="_blank" class="btn btn-view">View</a>
+                    </div>
+                </div>
+                <!-- Project 7 -->
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/ff7e5f/ffffff?text=Super-AI" alt="Super-AI Project Preview">
+                    <h3>Super-AI</h3>
+                    <p>An AI-powered application extending the work beyond traditional desktop builds — details coming soon.</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com/AbdullarhyTech360/super-ai" target="_blank" class="btn btn-code">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Code
+                        </a>
+                        <span class="btn btn-disabled">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Projects Button -->
+            <div class="more-projects-container">
+                <a href="https://github.com/AbdullarhyTech360" target="_blank" class="btn-more">More Projects on GitHub</a>
+            </div>
+        </section>
+
+        <!-- Stack and Skill Matrix -->
+        <section id="stack">
+            <h2>Stack & Skill Matrix</h2>
+            <p class="section-subtitle">What I reach for, grouped by the kind of problem it solves. Click a card to open it.</p>
+            <div class="stack-grid">
+                <!-- Skill 1 -->
+                <div class="skill-card" onclick="toggleSkill(event, this)">
+                    <h3>Frontend Dev</h3>
+                    <p class="skill-desc">High-performance interfaces, from the pixels up to the data.</p>
+                    <div class="skill-details">
+                        <ul>
+                            <li>JavaScript (ES6+) / HTML5</li>
+                            <li>Tailwind CSS & Responsive Design</li>
+                            <li>DOM Manipulation & State</li>
+                            <li>REST API & Async Fetch</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Skill 2 -->
+                <div class="skill-card" onclick="toggleSkill(event, this)">
+                    <h3>System Development</h3>
+                    <p class="skill-desc">Structuring the logic underneath an application — not just its screens.</p>
+                    <div class="skill-details">
+                        <ul>
+                            <li>Python Desktop Applications</li>
+                            <li>Local Offline Intranet Servers</li>
+                            <li>Database Management & Querying</li>
+                            <li>School CBT Examination Engines</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Skill 3 -->
+                <div class="skill-card" onclick="toggleSkill(event, this)">
+                    <h3>Mechatronics Engineering</h3>
+                    <p class="skill-desc">Where the code has to answer to physics.</p>
+                    <div class="skill-details">
+                        <ul>
+                            <li>Arduino C++ Programming</li>
+                            <li>Tinkercad Circuit Simulation</li>
+                            <li>Sensor Data Acquisition (ADC)</li>
+                            <li>Actuator & Motor Driver Circuits</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Skill 4 -->
+                <div class="skill-card" onclick="toggleSkill(event, this)">
+                    <h3>Workflow & Deployment</h3>
+                    <p class="skill-desc">Getting a project from my machine to somewhere real.</p>
+                    <div class="skill-details">
+                        <ul>
+                            <li>Git & GitHub Pages Hosting</li>
+                            <li>Custom DNS (amrahaz.me)</li>
+                            <li>Responsive Light/Dark UI</li>
+                            <li>Clean Code & Documentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Connect Section -->
+        <section id="contact-connect">
+            <!-- Contact Column -->
+            <div class="contact-column">
+                <h2>Contact</h2>
+                <p class="section-subtitle">The direct lines — for project inquiries, questions, or just to say hi.</p>
+                
+                <div class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:abdullahimaikidandan@gmail.com" class="contact-link">abdullahimaikidandan@gmail.com</a>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">Phone</span>
+                    <a href="tel:+2349026152658" class="contact-link">+234 902 615 2658</a>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">Alt Phone</span>
+                    <a href="tel:+2349065963237" class="contact-link">+234 906 596 3237</a>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">GitHub</span>
+                    <a href="https://github.com/AbdullarhyTech360" target="_blank" class="contact-link">AbdullarhyTech360</a>
+                </div>
+            </div>
+
+            <!-- Connect Column -->
+            <div class="connect-column">
+                <h2>Connect with me</h2>
+                <p class="section-subtitle">Find me elsewhere on the internet.</p>
+                
+                <div class="connect-grid">
+                    <!-- Row 1 -->
+                    <div class="social-box empty"></div>
+                    <a href="https://github.com/AbdullarhyTech360" target="_blank" class="social-box" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+                    <a href="https://www.facebook.com/profile.php?id=100076633645237" target="_blank" class="social-box" title="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+
+                    <!-- Row 2 -->
+                    <a href="https://x.com/kidandan_m37176" target="_blank" class="social-box" title="X (Twitter)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+                    <a href="https://wa.me/qr/KQBUKQTZDVRLN1" target="_blank" class="social-box" title="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+                    <a href="https://t.me/abdullarhy" target="_blank" class="social-box" title="Telegram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.36 2.083.36 2.083l-2.228 9.806c-.153.638-.66.79-1.156.49l-3.37-2.484-1.636 1.58c-.2.2-.54.3-.86.176l.364-3.62 6.88-6.212c.302-.267.302-.427-.114-.19l-7.473 4.71-3.22-1.015c-.7-.22-.71-.7.14-1.023l12.54-4.835a.54.54 0 0 1 .328-.078z"/></svg>
+                    </a>
+                    <div class="social-box empty"></div>
+
+                    <!-- Row 3 -->
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+                    <a href="https://www.linkedin.com/in/abdullahi-musa-kidandan-17359533a" target="_blank" class="social-box" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+                    <a href="https://www.tiktok.com/@abdullahimusakida" target="_blank" class="social-box" title="TikTok">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                    </a>
+                    <div class="social-box empty"></div>
+                    <div class="social-box empty"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox-overlay" class="lightbox-overlay">
+        <button class="lightbox-close" onclick="closeLightbox()" title="Close" aria-label="Close">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevImage(event)" title="Previous" aria-label="Previous">&#10094;</button>
+        <div class="lightbox-body">
+            <img id="lightbox-img" class="lightbox-content" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
         </div>
-        <div
-            class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none">
-        </div>
+        <button class="lightbox-nav lightbox-next" onclick="nextImage(event)" title="Next" aria-label="Next">&#10095;</button>
+    </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-                <!-- Hero Left Column: Brief & Intro (7 cols on Desktop) -->
-                <div class="lg:col-span-7 flex flex-col items-start text-left">
-
-                    <!-- Live Status Pill -->
-                    <div
-                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 text-xs font-mono text-emerald-600 dark:text-emerald-400 mb-6 shadow-sm">
-                        <span class="relative flex h-2 w-2">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        <span>Mechatronics Engineer • ABU Zaria '26</span>
-                    </div>
-
-                    <!-- Main Catchy Title -->
-                    <h1
-                        class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15] mb-5 sm:mb-6">
-                        Architecting <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500">Intelligent
-                            Software</span> & Hardware Systems
-                    </h1>
-
-                    <p
-                        class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-normal">
-                        Hi, I'm <strong class="text-slate-900 dark:text-white font-semibold">Abdullahi Kidandan
-                            Musa</strong>. I bridge the gap between high-performance web frontends, full-stack desktop
-                        architectures, and custom embedded microcontroller circuits.
-                    </p>
-
-                    <!-- Interactive Quick Stats Grid -->
-                    <div
-                        class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full max-w-lg mb-8 p-3 sm:p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800/80 backdrop-blur-md shadow-sm">
-                        <div
-                            class="border-b sm:border-b-0 sm:border-r border-slate-200 dark:border-slate-800 pb-3 sm:pb-0 sm:pr-2">
-                            <span class="block text-2xl font-extrabold font-mono text-emerald-500">100%</span>
-                            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Pixel-Perfect
-                                UI</span>
-                        </div>
-                        <div
-                            class="border-b sm:border-b-0 sm:border-r border-slate-200 dark:border-slate-800 pb-3 sm:pb-0 sm:pr-2">
-                            <span class="block text-2xl font-extrabold font-mono text-teal-500">3+</span>
-                            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Core
-                                Disciplines</span>
-                        </div>
-                        <div>
-                            <span class="block text-2xl font-extrabold font-mono text-indigo-500">ABU</span>
-                            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Mechatronics</span>
-                        </div>
-                    </div>
-
-                    <!-- Call To Action Buttons -->
-                    <div class="flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                        <a href="#projects"
-                            class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-500/25">
-                            <i class="fa-solid fa-code text-xs"></i> View Interactive Projects
-                        </a>
-                        <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')"
-                            class="w-full sm:w-auto bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-sm font-semibold shadow-sm">
-                            <i class="fa-regular fa-copy text-xs text-emerald-500"></i> Copy Contact Email
-                        </button>
-                    </div>
-
-                </div>
-
-                <!-- Hero Right Column: Custom Rectangular Mechatronics Photo Frame (5 cols on Desktop) -->
-                <div class="lg:col-span-5 relative flex justify-center lg:justify-end">
-
-                    <!-- Decorative Graphic Background Frames -->
-                    <div
-                        class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-600 opacity-30 blur-lg group-hover:opacity-100 transition duration-1000">
-                    </div>
-
-                    <!-- Main Rectangular Frame -->
-                    <div
-                        class="relative w-full max-w-sm sm:max-w-md bg-slate-900 rounded-3xl p-2 sm:p-3 border-2 border-slate-200 dark:border-slate-800 tech-border-glow shadow-2xl overflow-hidden">
-
-                        <!-- Rectangular Image Container (4:5 aspect ratio) -->
-                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-slate-950">
-                            <!-- High-Res Portrait Image Placeholder -->
-                            <img id="userAvatar" src="./assets/professional-picture.jpg"
-                                alt="Abdullahi Kidandan Musa - Mechatronics Engineer & Full Stack Developer"
-                                class="w-full h-full object-cover brightness-125 contrast-110 transition-transform duration-700 hover:scale-105">
-
-                            <!-- Sleek Cyber Overlay Overlay Screen Lines -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-transparent pointer-events-none">
-                            </div>
-
-                            <!-- Tech Crosshair Marks (Corner Accents) -->
-                            <div
-                                class="absolute top-3 left-3 text-[10px] font-mono text-emerald-400/80 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-emerald-500/30">
-                                SYS.MECHATRONICS // 01
-                            </div>
-                            <div
-                                class="absolute top-3 right-3 text-[10px] font-mono text-teal-400/80 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded border border-teal-500/30">
-                                ABU ZARIA
-                            </div>
-
-                            <!-- Bottom Floating Information Overlay Card -->
-                            <div
-                                class="absolute bottom-3 left-3 right-3 bg-slate-900/90 backdrop-blur-md p-4 rounded-xl border border-white/10 text-white shadow-xl">
-                                <div class="flex items-center justify-between mb-1.5">
-                                    <span
-                                        class="text-xs font-bold font-mono text-emerald-400 tracking-wide uppercase">Abdullahi
-                                        Musa</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-emerald-500/20 text-emerald-300 text-[10px] font-mono rounded border border-emerald-500/40">AMRAHAZ</span>
-                                </div>
-                                <p class="text-[11px] text-slate-300 font-sans leading-tight">
-                                    Specializing in Web Interfaces, C++ Microcontroller Embedded Systems & Intranet
-                                    Applications.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Technical Spec Footer Bar inside Frame -->
-                        <div
-                            class="mt-3 px-3 py-2 bg-slate-950/80 rounded-xl border border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                            <span class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-microchip text-emerald-400"></i> Embedded C++
-                            </span>
-                            <span class="flex items-center gap-1.5">
-                                <i class="fa-brands fa-js text-teal-400"></i> Full-Stack JS
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Brand Story & Origin Section (AMRAHAZ Breakdown) -->
-    <section id="about"
-        class="py-16 border-y border-slate-200 dark:border-slate-800/80 bg-slate-100/60 dark:bg-slate-900/40 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div
-                class="p-5 sm:p-8 lg:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/90 relative overflow-hidden shadow-sm dark:shadow-2xl">
-
-                <div class="grid lg:grid-cols-12 gap-8 items-center">
-
-                    <div class="lg:col-span-7">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                            <span
-                                class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Identity
-                                & Philosophy</span>
-                        </div>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                            The Story Behind <span class="text-emerald-500">amrahaz.me</span></h2>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
-                            <strong class="text-slate-900 dark:text-white font-semibold">AMRAHAZ</strong> isn't just a
-                            domain name—it's an acronym honoring core roots and inspirational foundations. Built around
-                            personal devotion and engineering precision, each syllable represents a key pillar of
-                            motivation:
-                        </p>
-                    </div>
-
-                    <!-- Acronym Interactive Breakdown Grid -->
-                    <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-
-                        <div
-                            class="p-3 sm:p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center hover:scale-105 transition">
-                            <span
-                                class="block font-mono text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">AM</span>
-                            <span
-                                class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Abdullahi</span>
-                            <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 block">Creator</span>
-                        </div>
-
-                        <div
-                            class="p-3 sm:p-4 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-center hover:scale-105 transition">
-                            <span
-                                class="block font-mono text-2xl font-extrabold text-teal-600 dark:text-teal-400">RA</span>
-                            <span class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Mother</span>
-                            <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 block">Inspiration</span>
-                        </div>
-
-                        <div
-                            class="p-3 sm:p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-center hover:scale-105 transition">
-                            <span
-                                class="block font-mono text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">HAZ</span>
-                            <span
-                                class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">Siblings</span>
-                            <span class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 block">Family</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack Matrix Section -->
-    <section id="skills" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span
-                    class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-widest">Engineering
-                    Competencies</span>
-                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Tools & Skill Matrix</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">Comprehensive stack spanning modern web
-                    technologies, system scripting, and circuit design.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Skill Card 1: Frontend -->
-                <div
-                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 transition shadow-sm">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-lg mb-4">
-                        <i class="fa-solid fa-desktop"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">Frontend Dev</h3>
-                    <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 font-mono">
-                        <li>• JavaScript (ES6+) / HTML5</li>
-                        <li>• Tailwind CSS & Responsive Design</li>
-                        <li>• DOM Manipulation & State</li>
-                        <li>• REST API & Async Fetch</li>
-                    </ul>
-                </div>
-
-                <!-- Skill Card 2: Systems & Backend -->
-                <div
-                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-teal-500/50 transition shadow-sm">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center text-lg mb-4">
-                        <i class="fa-solid fa-server"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">System Development</h3>
-                    <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 font-mono">
-                        <li>• Python Desktop Applications</li>
-                        <li>• Local Offline Intranet Servers</li>
-                        <li>• Database Management & Querying</li>
-                        <li>• School CBT Examination Engines</li>
-                    </ul>
-                </div>
-
-                <!-- Skill Card 3: Mechatronics & Hardware -->
-                <div
-                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition shadow-sm">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-lg mb-4">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">Mechatronics Engineering</h3>
-                    <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 font-mono">
-                        <li>• Arduino C++ Programming</li>
-                        <li>• Tinkercad Circuit Simulation</li>
-                        <li>• Sensor Data Acquisition (ADC)</li>
-                        <li>• Actuator & Motor Driver Circuits</li>
-                    </ul>
-                </div>
-
-                <!-- Skill Card 4: Workflow & Version Control -->
-                <div
-                    class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition shadow-sm">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg mb-4">
-                        <i class="fa-solid fa-gear"></i>
-                    </div>
-                    <h3 class="font-bold text-slate-900 dark:text-white mb-2">Workflow & Deployment</h3>
-                    <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 font-mono">
-                        <li>• Git & GitHub Pages Hosting</li>
-                        <li>• Custom DNS (amrahaz.me)</li>
-                        <li>• Responsive Light/Dark UI</li>
-                        <li>• Clean Code & Documentation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Projects Showcase Section -->
-    <section id="projects"
-        class="py-20 bg-slate-100/70 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
-                <div>
-                    <span
-                        class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-widest">Portfolio
-                        Showcase</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 tracking-tight">Featured
-                        Projects & Systems</h2>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Explore interactive frontend
-                        applications, systems tools, and mechatronics builds.</p>
-                </div>
-
-                <!-- Category Filter Buttons -->
-                <div class="mt-6 md:mt-0 flex flex-wrap gap-2 text-xs font-semibold">
-                    <button onclick="filterProjects('all')" id="btn-all"
-                        class="filter-btn active px-4 py-2 rounded-xl bg-emerald-500 text-white transition">
-                        All Projects
-                    </button>
-                    <button onclick="filterProjects('frontend')" id="btn-frontend"
-                        class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition">
-                        Frontend Web
-                    </button>
-                    <button onclick="filterProjects('hardware')" id="btn-hardware"
-                        class="filter-btn px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition">
-                        Systems & Hardware
-                    </button>
-                </div>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Project 1: Product List with Cart (Frontend) -->
-                <div
-                    class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div
-                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/10b981?text=Product+List+%26+Cart+UI"
-                                alt="Product List with Cart Preview"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-emerald-400 border border-slate-700">
-                                JavaScript • Cart State
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <span
-                                class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20 font-mono">Frontend
-                                Mentor</span>
-                            <h3
-                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
-                                Product List with Cart</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Dynamic e-commerce store featuring dynamic quantity increment counters, real-time item
-                                calculation, modal purchase confirmation, and JSON list parsing.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/product-list-with-cart-main" target="_blank"
-                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
-                            <i class="fa-brands fa-github text-sm"></i> Code
-                        </a>
-                        <a href="https://amrahaz.me/product-list-with-cart-main/"
-                            onclick="showToast('Frontend Demo', 'Opening product cart preview...')"
-                            class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
-                            Live Demo <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2: Multi-Step Form (Frontend) -->
-                <div
-                    class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div
-                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/6366f1?text=Multi-Step+Registration+Form"
-                                alt="Multi-Step Form Preview"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-indigo-400 border border-slate-700">
-                                Step Logic • Validation
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <span
-                                class="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md border border-indigo-500/20 font-mono">Advanced
-                                UI</span>
-                            <h3
-                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
-                                Multi-Step Form</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Subscription onboarding wizard with inline field error checking, state persistence
-                                across tabs, monthly/yearly billing toggle, and final price breakdown.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/multi-step-form" target="_blank"
-                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
-                            <i class="fa-brands fa-github text-sm"></i> Code
-                        </a>
-                        <a href="https://amrahaz.me/multi-step-form/"
-                            onclick="showToast('Form Demo', 'Opening multi-step form preview...')"
-                            class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
-                            Live Demo <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3: CBT Mini School System (Hardware / Systems) -->
-                <div
-                    class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div
-                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/14b8a6?text=CBT+Offline+School+Portal"
-                                alt="CBT School System"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-teal-400 border border-slate-700">
-                                Python • Intranet System
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <span
-                                class="text-[11px] font-bold text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-md border border-teal-500/20 font-mono">Software
-                                System</span>
-                            <h3
-                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
-                                CBT Mini School System</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Offline Computer-Based Testing application engineered for school local intranet
-                                deployments, featuring automated grading, student logs, and test timing controls.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/cbt-mini-school" target="_blank"
-                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
-                            <i class="fa-brands fa-github text-sm"></i> Code
-                        </a>
-                        <span class="text-slate-400 font-mono text-[11px]">Desktop Intranet</span>
-                    </div>
-                </div>
-
-                <!-- Project 4: Tinkercad Microcontroller Circuits (Hardware) -->
-                <div
-                    class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div
-                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/f59e0b?text=Arduino+Microcontroller+Circuits"
-                                alt="Arduino Microcontroller Circuits"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-amber-400 border border-slate-700">
-                                Arduino C++ • Sensors
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <span
-                                class="text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20 font-mono">Mechatronics</span>
-                            <h3
-                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
-                                Tinkercad Circuits & Sensors</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Microcontroller circuit schematics, ADC analog sensor conversion scripts, motor driver
-                                automation, and hardware interrupt handling routines.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com" target="_blank"
-                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
-                            <i class="fa-brands fa-github text-sm"></i> Schematics
-                        </a>
-                        <span class="text-slate-400 font-mono text-[11px]">Embedded C++</span>
-                    </div>
-                </div>
-
-                <!-- Project 5: Store Management System (Hardware / Systems) -->
-                <div
-                    class="project-card hardware group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div
-                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/3b82f6?text=Store+POS+%26+Inventory+System"
-                                alt="Store Management POS"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-blue-400 border border-slate-700">
-                                Full-Stack • POS
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <span
-                                class="text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-md border border-blue-500/20 font-mono">In
-                                Progress</span>
-                            <h3
-                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
-                                Store Management System</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Point of Sale (POS) & inventory database system supporting barcode scanning logic,
-                                real-time stock deductions, and receipt generation.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com" target="_blank"
-                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
-                            <i class="fa-brands fa-github text-sm"></i> Code
-                        </a>
-                        <span class="text-slate-400 font-mono text-[11px]">Full-Stack App</span>
-                    </div>
-                </div>
-
-                <!-- Project 6: IP Address Tracker (Frontend) -->
-                <div
-                    class="project-card frontend group bg-white dark:bg-[#0f172a] rounded-2xl border border-slate-200 dark:border-slate-800/90 overflow-hidden hover:shadow-xl dark:hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
-                    <div>
-                        <div
-                            class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
-                            <img src="https://placehold.co/600x350/0f172a/ec4899?text=IP+Tracker+%26+Interactive+Map"
-                                alt="IP Tracker"
-                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-mono text-pink-400 border border-slate-700">
-                                IP Geolocation • Maps
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <span
-                                class="text-[11px] font-bold text-pink-600 dark:text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-md border border-pink-500/20 font-mono">API
-                                Integration</span>
-                            <h3
-                                class="text-xl font-bold text-slate-900 dark:text-white mt-3 group-hover:text-emerald-500 transition">
-                                IP Address Tracker</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Real-time IP address lookups using geolocation REST APIs and dynamic interactive map
-                                tile rendering with custom pin markers.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="px-6 py-4 bg-slate-50 dark:bg-slate-950/60 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-                        <a href="https://github.com/AbdullarhyTech360/ip-address-tracker-master" target="_blank"
-                            class="text-slate-700 dark:text-slate-300 hover:text-emerald-500 flex items-center gap-1.5 transition">
-                            <i class="fa-brands fa-github text-sm"></i> Code
-                        </a>
-                        <a href="http://amrahaz.me/ip-address-tracker-master/"
-                            onclick="showToast('IP Tracker', 'Opening map tracker preview...')"
-                            class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 flex items-center gap-1 transition">
-                            Live Demo <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer id="contact"
-        class="py-16 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#050811] text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-            <span
-                class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 inline-flex items-center justify-center text-xl mb-4">
-                <i class="fa-solid fa-paper-plane"></i>
-            </span>
-
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Let's Build Something
-                Impactful</h3>
-            <p class="text-slate-600 dark:text-slate-400 text-sm mb-8 max-w-lg mx-auto">
-                Open for software contracts, embedded system engineering, and collaborative projects.
-            </p>
-
-            <div class="flex flex-wrap justify-center items-center gap-4 mb-10">
-                <button onclick="copyEmail('amkidandan@engineering.abu.edu.ng')"
-                    class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
-                    <i class="fa-solid fa-envelope"></i> amkidandan@engineering.abu.edu.ng
-                </button>
-                <a href="https://github.com/AbdullarhyTech360" target="_blank"
-                    class="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition text-xs sm:text-sm font-semibold flex items-center gap-2">
-                    <i class="fa-brands fa-github text-base"></i> GitHub
-                </a>
-            </div>
-
-            <div
-                class="pt-8 border-t border-slate-200 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-500 font-mono gap-4">
-                <p>© 2026 Abdullahi Kidandan Musa • All Rights Reserved</p>
-                <p>Hosted on Custom Domain: <span
-                        class="text-emerald-600 dark:text-emerald-400 font-semibold">amrahaz.me</span></p>
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Abdullahi Musa Kidandan • All Rights Reserved</p>
     </footer>
 
-    <!-- Theme Switcher & Interactive Scripts -->
     <script>
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const themeLabel = document.getElementById('themeLabel');
-        const htmlElement = document.documentElement;
-
-        function applyTheme(theme) {
-            if (theme === 'light') {
-                htmlElement.classList.remove('dark');
-                themeIcon.className = 'fa-solid fa-sun text-amber-500 text-sm';
-                if (themeLabel) themeLabel.innerText = 'Light';
-            } else {
-                htmlElement.classList.add('dark');
-                themeIcon.className = 'fa-solid fa-moon text-amber-300 text-sm';
-                if (themeLabel) themeLabel.innerText = 'Dark';
-            }
+        // Always start at the top on load / reload
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
         }
+        window.scrollTo(0, 0);
 
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        applyTheme(currentTheme);
-
-        themeToggleBtn.addEventListener('click', () => {
-            const isDark = htmlElement.classList.contains('dark');
-            const newTheme = isDark ? 'light' : 'dark';
-            localStorage.setItem('theme', newTheme);
-            applyTheme(newTheme);
+        // --- 1. Welcome Prompt & Confetti Logic ---
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('welcome-modal').style.display = 'flex';
+                const nameInput = document.getElementById('visitor-name');
+                if (nameInput) {
+                    nameInput.focus({ preventScroll: false });
+                    if (nameInput.select) nameInput.select();
+                }
+            }, 1000);
         });
 
-        function copyEmail(email) {
-            // Using execCommand for compatibility inside frames
-            const tempInput = document.createElement('input');
-            tempInput.value = email;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
+        // Let the visitor submit the modal name with the Enter key
+        document.getElementById('visitor-name').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitName();
+            }
+        });
 
-            showToast('Email Copied!', email);
+        function submitName() {
+            const name = document.getElementById('visitor-name').value.trim();
+            if (name) {
+                document.getElementById('welcome-modal').style.display = 'none';
+                
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+                const heroText = document.querySelector('.hero-text h1');
+                heroText.innerHTML = `Welcome, <span class="gradient-keywords">${name}</span>! <br> I'm Abdullahi Musa Kidandan`;
+            }
         }
 
-        function showToast(title, message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastTitle').innerText = title;
-            document.getElementById('toastMessage').innerText = message;
+        function skipName(event) {
+            if (event) event.preventDefault();
+            document.getElementById('welcome-modal').style.display = 'none';
 
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        function filterProjects(category) {
-            const cards = document.querySelectorAll('.project-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-emerald-500', 'text-white');
-                btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
             });
 
-            const activeBtn = document.getElementById(`btn-${category}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
-                activeBtn.classList.add('bg-emerald-500', 'text-white');
-            }
+            const heroText = document.querySelector('.hero-text h1');
+            heroText.innerHTML = `Welcome, <span class="gradient-keywords">my visitor</span>! <br> I'm Abdullahi Musa Kidandan`;
+        }
 
-            cards.forEach(card => {
-                if (category === 'all' || card.classList.contains(category)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+        // --- 2. Dropdown Menu Logic (collapseable) ---
+        function closeDropdowns() {
+            document.querySelectorAll('.dropdown-trigger').forEach(t => {
+                t.classList.remove('open');
+                const menu = t.querySelector('.dropdown-menu');
+                if (menu) menu.classList.remove('show');
+                const link = t.querySelector('.arrow-down');
+                if (link) link.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+        dropdownTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                const menu = trigger.querySelector('.dropdown-menu');
+                const isOpen = menu.classList.contains('show');
+                closeDropdowns();
+                if (!isOpen) {
+                    menu.classList.add('show');
+                    trigger.classList.add('open');
+                    const link = trigger.querySelector('.arrow-down');
+                    if (link) link.setAttribute('aria-expanded', 'true');
                 }
             });
+        });
+
+        // Close dropdowns if clicked outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown-trigger')) {
+                closeDropdowns();
+            }
+        });
+
+        // Ensure dropdown links scroll smoothly to their target and close the menu
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // If it's a real link, close the menu so it collapses
+                if (this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+                    closeDropdowns();
+                }
+            });
+        });
+
+        // --- 3. Dark Mode Toggle ---
+        function toggleDarkMode(event) {
+            if (event) event.preventDefault();
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('themeLabel').innerText = isDark ? 'Dark' : 'Light';
+            document.getElementById('themeToggle').setAttribute('aria-checked', isDark);
+            closeDropdowns();
         }
+
+        // --- 3b. Mobile Hamburger Menu ---
+        function toggleMobileMenu() {
+            const isOpen = document.body.classList.toggle('mobile-nav-open');
+            if (!isOpen) closeDropdowns();
+        }
+
+        // Close the mobile menu when tapping outside the header
+        document.addEventListener('click', (e) => {
+            if (document.body.classList.contains('mobile-nav-open') && !e.target.closest('header')) {
+                document.body.classList.remove('mobile-nav-open');
+                closeDropdowns();
+            }
+        });
+
+        // --- 4. Stack Card Expand/Collapse & Sinking Logic ---
+        function toggleSkill(event, card) {
+            event.stopPropagation();
+            
+            const isExpanded = card.classList.contains('expanded');
+            
+            // Close all other expanded cards
+            document.querySelectorAll('.skill-card').forEach(c => {
+                c.classList.remove('expanded');
+            });
+
+            // Toggle the clicked card
+            if (!isExpanded) {
+                card.classList.add('expanded');
+            }
+        }
+
+        // Close expanded cards when clicking anywhere outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.skill-card')) {
+                document.querySelectorAll('.skill-card').forEach(c => {
+                    c.classList.remove('expanded');
+                });
+            }
+        });
+
+        // --- 5. Lightbox gallery for project screenshots ---
+        const lightboxGallery = [
+            { src: './assets/product-list-with-cart.png', title: 'Product List with Cart' },
+            { src: './assets/multi-step-registration-form.png', title: 'Multi-Step Form' },
+            { src: './assets/cbt-mini.png', title: 'CBT Mini School System' },
+            { src: './assets/store-management-system.png', title: 'Store Management System' },
+            { src: './assets/mood-indicator.png', title: 'Tinkercad Mood Indicator' },
+            { src: './assets/ip-address-tracker.png', title: 'IP Address Tracker' },
+        ];
+
+        let lightboxIndex = 0;
+
+        function renderLightbox() {
+            const item = lightboxGallery[lightboxIndex];
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = item.src;
+            lightboxImg.alt = item.title;
+            document.getElementById('lightbox-caption').innerText =
+                `${item.title} — Project ${lightboxIndex + 1} of ${lightboxGallery.length}`;
+        }
+
+        function openLightbox(startImg) {
+            lightboxIndex = lightboxGallery.findIndex(item => item.src === startImg.getAttribute('src'));
+            if (lightboxIndex === -1) lightboxIndex = 0;
+            renderLightbox();
+            document.getElementById('lightbox-overlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-overlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function prevImage(e) {
+            if (e) e.stopPropagation();
+            lightboxIndex = (lightboxIndex - 1 + lightboxGallery.length) % lightboxGallery.length;
+            renderLightbox();
+        }
+
+        function nextImage(e) {
+            if (e) e.stopPropagation();
+            lightboxIndex = (lightboxIndex + 1) % lightboxGallery.length;
+            renderLightbox();
+        }
+
+        document.getElementById('lightbox-overlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget || e.target.classList.contains('lightbox-close')) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox-overlay').classList.contains('show')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage(e);
+            if (e.key === 'ArrowRight') nextImage(e);
+        });
+
+        // --- 6. Smooth scroll for in-page anchor links ---
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                if (this.classList.contains('arrow-down')) return;
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                const target = document.querySelector(href);
+                if (!target) return;
+                e.preventDefault();
+                const headerOffset = 80;
+                const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+                window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
+                history.replaceState(null, '', href);
+                document.body.classList.remove('mobile-nav-open');
+                closeDropdowns();
+            });
+        });
     </script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
@@ -844,5 +1607,4 @@
     </script>
     <!--End of Tawk.to Script-->
 </body>
-
 </html>
