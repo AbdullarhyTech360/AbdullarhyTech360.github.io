@@ -848,6 +848,16 @@
             background: var(--glass-bg);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        footer .footer-knot {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
         }
 
         footer p {
@@ -1366,6 +1376,14 @@
 
     <!-- Footer -->
     <footer>
+        <svg class="footer-knot" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <g fill="none" stroke-width="6" stroke-linecap="round">
+                <circle cx="24" cy="15.5" r="13" stroke="#ff7e5f"></circle>
+                <circle cx="16.6" cy="19.8" r="13" stroke="#feb47b"></circle>
+                <circle cx="31.4" cy="19.8" r="13" stroke="#fb7185"></circle>
+            </g>
+            <circle cx="24" cy="24" r="3.8" fill="#ff7e5f"></circle>
+        </svg>
         <p>© 2026 Abdullahi Musa Kidandan • All Rights Reserved</p>
     </footer>
 
