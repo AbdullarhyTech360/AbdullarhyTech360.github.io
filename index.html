@@ -882,7 +882,7 @@
         .modal-content {
             background: var(--card-bg);
             padding: 1.8rem 1.65rem 1.7rem;
-            border-radius: 16px;
+            border-radius: 16px 0 16px 16px;
             text-align: center;
             max-width: 304px;
             width: calc(100% - 2rem);
@@ -897,10 +897,6 @@
             justify-content: center;
             margin-bottom: 1rem;
             border-radius: 8px;
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-size: 0.65rem;
-            font-weight: 700;
         }
 
         .modal-content h2 {
@@ -1015,7 +1011,16 @@
     <!-- Welcome Prompt Modal -->
     <div id="welcome-modal">
         <div class="modal-content">
-            <span class="modal-mark" aria-hidden="true">AM</span>
+            <span class="modal-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="30" height="30" focusable="false">
+                <g fill="none" stroke-width="5" stroke-linecap="round">
+                    <circle cx="24" cy="15.5" r="13" stroke="#ff7e5f"></circle>
+                    <circle cx="16.6" cy="19.8" r="13" stroke="#feb47b"></circle>
+                    <circle cx="31.4" cy="19.8" r="13" stroke="#fb7185"></circle>
+                </g>
+                <circle cx="24" cy="24" r="3.8" fill="#ff7e5f"></circle>
+            </svg>
+        </span>
             <h2>Before you look around —<br>what should I call you?</h2>
             <p>Just so I can say hello properly.</p>
             <input type="text" id="visitor-name" placeholder="Your name" aria-label="Your name" />
@@ -1089,7 +1094,7 @@
         <!-- About Section -->
         <section id="about">
             <div class="about-card" id="bio">
-                <h2>Biography</h2>
+                <h2>About me</h2>
                 <p>I am a Mechatronics Engineering student at Ahmadu Bello University, Zaria (ABU '27), and a full-stack developer. My work spans high-performance web frontends, full stack applications, and custom embedded microcontroller circuits — building robust solutions and bridging the gap between hardware and software.</p>
             </div>
             <div class="about-card" id="origin">
